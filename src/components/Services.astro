@@ -1,0 +1,72 @@
+---
+import ServiceCard from './ServiceCard.astro';
+
+const services = [
+	{
+		title: "Pailas Ganaderas",
+		description: "Fabricación y reparación de pailas ganaderas para carros y camiones. Tanques de agua resistentes para el transporte de ganado.",
+		icon: `<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+		</svg>`
+	},
+	{
+		title: "Maquinaria Agrícola",
+		description: "Reparación y mantenimiento de equipo agrícola: picadoras, forrajeras, molinos y todo tipo de maquinaria del campo.",
+		icon: `<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+		</svg>`
+	},
+	{
+		title: "Soldadura de Arco",
+		description: "Soldadura profesional con arco eléctrico para todo tipo de trabajos en hierro y acero. Calidad y precisión garantizada.",
+		icon: `<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+		</svg>`
+	},
+	{
+		title: "Techados",
+		description: "Construcción y reparación de techos metálicos. Estructuras resistentes para hogares, bodegas y establos.",
+		icon: `<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+		</svg>`
+	},
+	{
+		title: "Básculas y Romanas",
+		description: "Reparación y calibración de básculas y romanas para uso ganadero, agrícola y comercial.",
+		icon: `<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+		</svg>`
+	}
+];
+---
+
+<!-- Section separator -->
+<div class="section-separator bg-charcoal">
+	<svg class="w-full h-12 md:h-16" viewBox="0 0 1200 100" preserveAspectRatio="none">
+		<path d="M0,0 L1200,0 L1200,40 L600,100 L0,40 Z" fill="#2D2D2D"/>
+	</svg>
+</div>
+
+<section id="servicios" class="py-20 md:py-28 px-4 bg-charcoal metal-texture">
+	<div class="max-w-6xl mx-auto">
+		<div class="text-center mb-12 animate-on-scroll">
+			<h2 class="font-heading text-3xl md:text-4xl font-bold text-smoke mb-4">
+				NUESTROS <span class="text-welding-orange">SERVICIOS</span>
+			</h2>
+			<div class="w-24 h-1 bg-welding-orange mx-auto rounded-full"></div>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{services.map((service, index) => (
+				<div class={`animate-on-scroll delay-${(index % 3) + 1}`}>
+					<ServiceCard
+						title={service.title}
+						description={service.description}
+						icon={service.icon}
+					/>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

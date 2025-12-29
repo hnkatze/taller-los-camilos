@@ -1,0 +1,28 @@
+---
+const navLinks = [
+	{ href: "#servicios", label: "Servicios" },
+	{ href: "#galeria", label: "Galería" },
+	{ href: "#contacto", label: "Contacto" },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-charcoal/95 backdrop-blur-sm border-b border-steel">
+	<nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+		<a href="#" class="font-heading text-xl md:text-2xl font-bold text-smoke hover:text-welding-orange transition-colors">
+			TALLER LOS CAMILOS
+		</a>
+
+		<ul class="flex items-center gap-6 md:gap-8">
+			{navLinks.map((link) => (
+				<li>
+					<a
+						href={link.href}
+						class="text-ash hover:text-welding-orange transition-colors text-sm md:text-base font-medium"
+					>
+						{link.label}
+					</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+</header>

@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #1C1C1C;
+  --color-steel: #2D2D2D;
+  --color-welding-orange: #F97316;
+  --color-forge-yellow: #FBBF24;
+  --color-smoke: #F5F5F4;
+  --color-ash: #A3A3A3;
+  --color-rust: #78350F;
+
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-charcoal);
+  color: var(--color-smoke);
+}
+
+/* Fade-in animation on scroll */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation delays for children */
+.animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+.animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+.animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+
+/* Subtle metallic texture overlay */
+.metal-texture {
+  position: relative;
+}
+
+.metal-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.01) 2px,
+      rgba(255, 255, 255, 0.01) 4px
+    );
+  pointer-events: none;
+}

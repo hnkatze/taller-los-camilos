@@ -1,0 +1,93 @@
+---
+const stats = [
+	{ number: 15, suffix: "+", label: "Años de Experiencia" },
+	{ number: 500, suffix: "+", label: "Trabajos Realizados" },
+	{ number: 100, suffix: "%", label: "Clientes Satisfechos" },
+];
+---
+
+<section class="py-16 px-4 bg-steel relative overflow-hidden">
+	<!-- Decorative elements -->
+	<div class="absolute top-0 left-0 w-32 h-32 bg-welding-orange/5 rounded-full blur-3xl"></div>
+	<div class="absolute bottom-0 right-0 w-40 h-40 bg-forge-yellow/5 rounded-full blur-3xl"></div>
+
+	<div class="max-w-4xl mx-auto relative z-10">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+			{stats.map((stat) => (
+				<div class="stat-item">
+					<div class="flex items-center justify-center">
+						<span
+							class="stat-number font-heading text-5xl md:text-6xl font-bold text-welding-orange"
+							data-target={stat.number}
+						>
+							0
+						</span>
+						<span class="font-heading text-4xl md:text-5xl font-bold text-welding-orange">
+							{stat.suffix}
+						</span>
+					</div>
+					<p class="text-smoke font-medium mt-2">{stat.label}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<script>
+	function animateCounters() {
+		const counters = document.querySelectorAll('.stat-number');
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const counter = entry.target as HTMLElement;
+					const target = parseInt(counter.dataset.target || '0');
+					const duration = 2000;
+					const start = performance.now();
+
+					function updateCounter(currentTime: number) {
+						const elapsed = currentTime - start;
+						const progress = Math.min(elapsed / duration, 1);
+
+						// Easing function for smooth animation
+						const easeOut = 1 - Math.pow(1 - progress, 3);
+						const current = Math.floor(easeOut * target);
+
+						counter.textContent = current.toString();
+
+						if (progress < 1) {
+							requestAnimationFrame(updateCounter);
+						} else {
+							counter.textContent = target.toString();
+						}
+					}
+
+					requestAnimationFrame(updateCounter);
+					observer.unobserve(counter);
+				}
+			});
+		}, { threshold: 0.5 });
+
+		counters.forEach(counter => observer.observe(counter));
+	}
+
+	// Run on page load
+	document.addEventListener('DOMContentLoaded', animateCounters);
+	// Also run on Astro page transitions
+	document.addEventListener('astro:page-load', animateCounters);
+</script>
+
+<style>
+	.stat-item {
+		padding: 1.5rem;
+		border-radius: 1rem;
+		background: rgba(28, 28, 28, 0.5);
+		border: 1px solid rgba(249, 115, 22, 0.1);
+		transition: all 0.3s ease;
+	}
+
+	.stat-item:hover {
+		border-color: rgba(249, 115, 22, 0.3);
+		background: rgba(28, 28, 28, 0.7);
+	}
+</style>

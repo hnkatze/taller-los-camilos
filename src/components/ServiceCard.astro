@@ -1,0 +1,38 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	icon: string;
+}
+
+const { title, description, icon } = Astro.props;
+---
+
+<div class="service-card bg-steel p-6 rounded-xl border border-transparent hover:border-welding-orange transition-all duration-300 group">
+	<div class="w-14 h-14 bg-charcoal rounded-lg flex items-center justify-center mb-4 group-hover:bg-welding-orange/10 transition-colors">
+		<Fragment set:html={icon} />
+	</div>
+
+	<h3 class="font-heading text-xl font-semibold text-smoke mb-2 group-hover:text-welding-orange transition-colors">
+		{title}
+	</h3>
+
+	<p class="text-ash leading-relaxed">
+		{description}
+	</p>
+</div>
+
+<style>
+	.service-card {
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+		transition: all 0.3s ease;
+	}
+
+	.service-card:hover {
+		box-shadow:
+			0 10px 25px -5px rgba(249, 115, 22, 0.2),
+			0 0 20px -5px rgba(249, 115, 22, 0.15),
+			inset 0 1px 0 rgba(249, 115, 22, 0.1);
+		transform: translateY(-4px);
+	}
+</style>

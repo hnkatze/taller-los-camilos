@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+interface Props {
+	title?: string;
+}
+
+const { title = "Taller Los Camilos - Soldadura Profesional en Bonito Oriental, Honduras" } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Taller de soldadura en Bonito Oriental, Colón, Honduras. Especialistas en pailas ganaderas, reparación de maquinaria agrícola, soldadura de arco, techados y básculas." />
+		<meta name="keywords" content="soldadura, pailas ganaderas, taller, Bonito Oriental, Honduras, maquinaria agrícola, techados, básculas" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+		<WhatsAppButton />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		min-height: 100%;
+	}
+</style>
