@@ -1,10 +1,27 @@
 ---
+// Imágenes reales del taller
+const images = [
+	{
+		src: "https://i.postimg.cc/Nj7pQQ5t/Imagen-de-i-OS.jpg",
+		alt: "Trabajo de soldadura - Taller Los Camilos",
+		label: "Trabajo Realizado"
+	},
+	{
+		src: "https://i.postimg.cc/T3qCTTpT/Imagen-de-i-OS-(1).jpg",
+		alt: "Proyecto de soldadura - Taller Los Camilos",
+		label: "Proyecto Completado"
+	},
+	{
+		src: "https://i.postimg.cc/2SF2CCVp/Imagen-de-i-OS-(2).jpg",
+		alt: "Soldadura profesional - Taller Los Camilos",
+		label: "Soldadura Profesional"
+	}
+];
+
+// Placeholders para futuras fotos
 const placeholders = [
-	"Pailas Ganaderas",
-	"Soldadura de Arco",
-	"Maquinaria Agrícola",
 	"Techados Metálicos",
-	"Reparaciones",
+	"Maquinaria Agrícola",
 	"Trabajos Especiales"
 ];
 ---
@@ -27,6 +44,26 @@ const placeholders = [
 		</div>
 
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			<!-- Imágenes reales -->
+			{images.map((image, index) => (
+				<div class={`animate-on-scroll delay-${index + 1} aspect-[4/3] bg-charcoal rounded-xl border border-charcoal hover:border-welding-orange transition-all duration-300 overflow-hidden group cursor-pointer hover:scale-[1.02]`}>
+					<div class="relative w-full h-full">
+						<img
+							src={image.src}
+							alt={image.alt}
+							class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+							loading="lazy"
+						/>
+						<div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+							<div class="absolute bottom-0 left-0 right-0 p-4">
+								<span class="text-smoke font-medium text-sm">{image.label}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			))}
+
+			<!-- Placeholders para futuras fotos -->
 			{placeholders.map((label, index) => (
 				<div class={`animate-on-scroll delay-${(index % 3) + 1} aspect-[4/3] bg-charcoal rounded-xl border border-charcoal hover:border-welding-orange transition-all duration-300 flex flex-col items-center justify-center group cursor-pointer hover:scale-[1.02]`}>
 					<svg class="w-12 h-12 text-ash group-hover:text-welding-orange transition-colors mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
