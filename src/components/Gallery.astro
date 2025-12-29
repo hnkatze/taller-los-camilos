@@ -15,15 +15,34 @@ const images = [
 		src: "https://i.postimg.cc/2SF2CCVp/Imagen-de-i-OS-(2).jpg",
 		alt: "Soldadura profesional - Taller Los Camilos",
 		label: "Soldadura Profesional"
+	},
+	{
+		src: "https://i.postimg.cc/nct0Qs81/1.jpg",
+		alt: "Trabajo de soldadura - Taller Los Camilos",
+		label: "Soldadura de Calidad"
+	},
+	{
+		src: "https://i.postimg.cc/CLHJCFYN/2.jpg",
+		alt: "Proyecto metalúrgico - Taller Los Camilos",
+		label: "Proyecto Metalúrgico"
+	},
+	{
+		src: "https://i.postimg.cc/4NbwvJZQ/3.jpg",
+		alt: "Fabricación en metal - Taller Los Camilos",
+		label: "Fabricación en Metal"
+	},
+	{
+		src: "https://i.postimg.cc/wTcF56H5/4.jpg",
+		alt: "Trabajo especializado - Taller Los Camilos",
+		label: "Trabajo Especializado"
+	},
+	{
+		src: "https://i.postimg.cc/X7cxKV3x/5.jpg",
+		alt: "Reparación profesional - Taller Los Camilos",
+		label: "Reparación Profesional"
 	}
 ];
-
-// Placeholders para futuras fotos
-const placeholders = [
-	"Techados Metálicos",
-	"Maquinaria Agrícola",
-	"Trabajos Especiales"
-];
+// Ya no necesitamos placeholders con 8 imágenes reales
 ---
 
 <!-- Section separator -->
@@ -44,9 +63,8 @@ const placeholders = [
 		</div>
 
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-			<!-- Imágenes reales -->
 			{images.map((image, index) => (
-				<div class={`animate-on-scroll delay-${index + 1} aspect-[4/3] bg-charcoal rounded-xl border border-charcoal hover:border-welding-orange transition-all duration-300 overflow-hidden group cursor-pointer hover:scale-[1.02]`}>
+				<div class={`animate-on-scroll delay-${(index % 3) + 1} aspect-[4/3] bg-charcoal rounded-xl border border-charcoal hover:border-welding-orange transition-all duration-300 overflow-hidden group cursor-pointer hover:scale-[1.02]`}>
 					<div class="relative w-full h-full">
 						<img
 							src={image.src}
@@ -63,16 +81,6 @@ const placeholders = [
 				</div>
 			))}
 
-			<!-- Placeholders para futuras fotos -->
-			{placeholders.map((label, index) => (
-				<div class={`animate-on-scroll delay-${(index % 3) + 1} aspect-[4/3] bg-charcoal rounded-xl border border-charcoal hover:border-welding-orange transition-all duration-300 flex flex-col items-center justify-center group cursor-pointer hover:scale-[1.02]`}>
-					<svg class="w-12 h-12 text-ash group-hover:text-welding-orange transition-colors mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-					</svg>
-					<span class="text-ash group-hover:text-smoke transition-colors text-sm font-medium">{label}</span>
-					<span class="text-ash/60 text-xs mt-1">Próximamente</span>
-				</div>
-			))}
 		</div>
 
 		<p class="text-center text-ash mt-8 text-sm animate-on-scroll">

@@ -16,6 +16,7 @@ const {
 const siteUrl = "https://tallerloscamilos.com"; // Cambiar cuando tengas dominio
 const siteName = "Taller Los Camilos";
 const phone = "+50499505549";
+const ogImage = "https://i.postimg.cc/wTcF56H5/4.jpg"; // Imagen de techo metálico para preview
 
 // Schema.org LocalBusiness JSON-LD
 const schemaData = {
@@ -38,7 +39,7 @@ const schemaData = {
 	},
 	"openingHours": ["Mo-Fr 07:00-16:00", "Sa 07:00-12:00"],
 	"priceRange": "$$",
-	"image": `${siteUrl}/og-image.jpg`,
+	"image": ogImage,
 	"sameAs": [],
 	"serviceArea": {
 		"@type": "Place",
@@ -121,9 +122,7 @@ const schemaData = {
 		<meta property="og:url" content={siteUrl} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
+		<meta property="og:image" content={ogImage} />
 		<meta property="og:locale" content="es_HN" />
 		<meta property="og:site_name" content={siteName} />
 
@@ -132,7 +131,7 @@ const schemaData = {
 		<meta name="twitter:url" content={siteUrl} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
+		<meta name="twitter:image" content={ogImage} />
 
 		<!-- Theme Color -->
 		<meta name="theme-color" content="#1C1C1C" />
