@@ -1,0 +1,85 @@
+---
+const reasons = [
+	{
+		icon: "medal",
+		title: "+15 Años de Experiencia",
+		description: "Trayectoria comprobada en soldadura profesional al servicio de la comunidad"
+	},
+	{
+		icon: "shield",
+		title: "Trabajo de Calidad",
+		description: "Materiales de primera y acabados duraderos que garantizan su inversión"
+	},
+	{
+		icon: "tag",
+		title: "Precios Justos",
+		description: "Cotizaciones transparentes y honestas, sin sorpresas ni costos ocultos"
+	},
+	{
+		icon: "handshake",
+		title: "Servicio Personalizado",
+		description: "Atención directa del propietario con soluciones a la medida de sus necesidades"
+	}
+];
+---
+
+<!-- Section separator -->
+<div class="section-separator bg-charcoal">
+	<svg class="w-full h-12 md:h-16" viewBox="0 0 1200 100" preserveAspectRatio="none">
+		<path d="M0,0 L1200,0 L1200,100 L0,50 Z" fill="#2D2D2D"/>
+	</svg>
+</div>
+
+<section id="por-que-elegirnos" class="py-20 md:py-28 px-4 bg-steel metal-texture">
+	<div class="max-w-6xl mx-auto">
+		<div class="text-center mb-12 animate-on-scroll">
+			<h2 class="font-heading text-3xl md:text-4xl font-bold text-smoke mb-4">
+				¿POR QUÉ <span class="text-welding-orange">ELEGIRNOS</span>?
+			</h2>
+			<p class="text-ash max-w-2xl mx-auto">
+				Somos su mejor opción en soldadura profesional en Bonito Oriental
+			</p>
+			<div class="w-24 h-1 bg-welding-orange mx-auto mt-4 rounded-full"></div>
+		</div>
+
+		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+			{reasons.map((reason, index) => (
+				<div class={`bg-charcoal p-6 rounded-xl text-center group hover:bg-charcoal/80 transition-all duration-300 animate-on-scroll delay-${index + 1}`}>
+					<!-- Icon -->
+					<div class="w-16 h-16 mx-auto mb-4 bg-steel rounded-full flex items-center justify-center group-hover:bg-welding-orange/20 transition-colors">
+						{reason.icon === "medal" && (
+							<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+							</svg>
+						)}
+						{reason.icon === "shield" && (
+							<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+							</svg>
+						)}
+						{reason.icon === "tag" && (
+							<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+						)}
+						{reason.icon === "handshake" && (
+							<svg class="w-8 h-8 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+							</svg>
+						)}
+					</div>
+
+					<!-- Title -->
+					<h3 class="font-heading text-lg font-semibold text-smoke mb-2 group-hover:text-welding-orange transition-colors">
+						{reason.title}
+					</h3>
+
+					<!-- Description -->
+					<p class="text-ash text-sm leading-relaxed">
+						{reason.description}
+					</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

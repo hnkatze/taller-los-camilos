@@ -1,0 +1,11 @@
+# Robots.txt for Taller Los Camilos
+# https://tallerloscamilos.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tallerloscamilos.com/sitemap.xml
+
+# Crawl-delay (optional, be gentle with the server)
+Crawl-delay: 10

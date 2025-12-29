@@ -4,25 +4,149 @@ import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 interface Props {
 	title?: string;
+	description?: string;
 }
 
-const { title = "Taller Los Camilos - Soldadura Profesional en Bonito Oriental, Honduras" } = Astro.props;
+const {
+	title = "Taller Los Camilos - Soldadura Profesional en Bonito Oriental, Honduras",
+	description = "Taller de soldadura en Bonito Oriental, Colón, Honduras. Especialistas en pailas ganaderas, reparación de maquinaria agrícola, soldadura de arco eléctrico, techados y básculas. Llámenos: 99505549"
+} = Astro.props;
+
+// SEO Data
+const siteUrl = "https://tallerloscamilos.com"; // Cambiar cuando tengas dominio
+const siteName = "Taller Los Camilos";
+const phone = "+50499505549";
+
+// Schema.org LocalBusiness JSON-LD
+const schemaData = {
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	"name": siteName,
+	"description": description,
+	"url": siteUrl,
+	"telephone": phone,
+	"address": {
+		"@type": "PostalAddress",
+		"addressLocality": "Bonito Oriental",
+		"addressRegion": "Colón",
+		"addressCountry": "HN"
+	},
+	"geo": {
+		"@type": "GeoCoordinates",
+		"latitude": "15.7461602",
+		"longitude": "-85.7247553"
+	},
+	"openingHours": ["Mo-Fr 07:00-16:00", "Sa 07:00-12:00"],
+	"priceRange": "$$",
+	"image": `${siteUrl}/og-image.jpg`,
+	"sameAs": [],
+	"serviceArea": {
+		"@type": "Place",
+		"name": "Colón, Honduras"
+	},
+	"hasOfferCatalog": {
+		"@type": "OfferCatalog",
+		"name": "Servicios de Soldadura",
+		"itemListElement": [
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Pailas Ganaderas",
+					"description": "Fabricación y reparación de pailas ganaderas para carros y camiones"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Reparación de Maquinaria Agrícola",
+					"description": "Reparación de picadoras, forrajeras y equipo agrícola"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Soldadura de Arco Eléctrico",
+					"description": "Soldadura profesional en hierro y acero"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Techados Metálicos",
+					"description": "Construcción y reparación de techos metálicos"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Reparación de Básculas",
+					"description": "Reparación y calibración de básculas y romanas"
+				}
+			}
+		]
+	}
+};
 ---
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="Taller de soldadura en Bonito Oriental, Colón, Honduras. Especialistas en pailas ganaderas, reparación de maquinaria agrícola, soldadura de arco, techados y básculas." />
-		<meta name="keywords" content="soldadura, pailas ganaderas, taller, Bonito Oriental, Honduras, maquinaria agrícola, techados, básculas" />
+		<link rel="apple-touch-icon" href="/favicon.svg" />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-
+		<!-- Primary Meta Tags -->
 		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content="soldadura, pailas ganaderas, taller soldadura Honduras, Bonito Oriental, maquinaria agrícola, techados metálicos, básculas, romanas, soldadura arco eléctrico, Colón Honduras" />
+		<meta name="author" content={siteName} />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="Spanish" />
+		<meta name="geo.region" content="HN-CL" />
+		<meta name="geo.placename" content="Bonito Oriental" />
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={siteUrl} />
+
+		<!-- Open Graph / Facebook / WhatsApp -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:locale" content="es_HN" />
+		<meta property="og:site_name" content={siteName} />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={siteUrl} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
+
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#1C1C1C" />
+		<meta name="msapplication-TileColor" content="#1C1C1C" />
+
+		<!-- Preload critical fonts -->
+		<link rel="preload" href="/fonts/Oswald-Bold.ttf" as="font" type="font/ttf" crossorigin />
+		<link rel="preload" href="/fonts/Inter_18pt-Regular.ttf" as="font" type="font/ttf" crossorigin />
+
+		<!-- Generator -->
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Schema.org JSON-LD -->
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 	</head>
 	<body>
 		<slot />
