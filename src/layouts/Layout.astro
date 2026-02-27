@@ -37,7 +37,7 @@ const schemaData = {
 		"latitude": "15.7461602",
 		"longitude": "-85.7247553"
 	},
-	"openingHours": ["Mo-Fr 07:00-16:00", "Sa 07:00-12:00"],
+	"openingHours": ["Mo-Fr 07:00-12:00", "Mo-Fr 13:00-16:00", "Sa 07:00-12:00"],
 	"priceRange": "$$",
 	"image": ogImage,
 	"sameAs": [],
@@ -151,7 +151,9 @@ const schemaData = {
 		<script is:inline type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 	</head>
 	<body>
-		<slot />
+		<main id="main-content">
+			<slot />
+		</main>
 		<WhatsAppButton />
 	</body>
 </html>
@@ -166,25 +168,11 @@ const schemaData = {
 </style>
 
 <script>
-	function initScrollAnimations() {
-		const elements = document.querySelectorAll('.animate-on-scroll');
-
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('is-visible');
-				}
-			});
-		}, {
-			threshold: 0.1,
-			rootMargin: '0px 0px -50px 0px'
+	// GSAP fallback: if GSAP fails to load or initialize within 3 seconds,
+	// reveal all .gsap-hidden elements so content is never permanently invisible
+	setTimeout(() => {
+		document.querySelectorAll('.gsap-hidden').forEach(el => {
+			el.classList.remove('gsap-hidden');
 		});
-
-		elements.forEach(el => observer.observe(el));
-	}
-
-	// Run on initial load
-	document.addEventListener('DOMContentLoaded', initScrollAnimations);
-	// Support Astro view transitions
-	document.addEventListener('astro:page-load', initScrollAnimations);
+	}, 3000);
 </script>
