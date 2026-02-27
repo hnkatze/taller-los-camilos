@@ -1,93 +1,118 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 const stats = [
-	{ number: 15, suffix: "+", label: "Años de Experiencia" },
-	{ number: 500, suffix: "+", label: "Trabajos Realizados" },
-	{ number: 100, suffix: "%", label: "Clientes Satisfechos" },
+	{ number: 15, suffix: "+", label: "Años de Experiencia", icon: "lucide:calendar" },
+	{ number: 5, suffix: "+", label: "Municipios Atendidos", icon: "lucide:map-pin" },
+	{ number: 0, suffix: "", label: "Servicio Garantizado", icon: "lucide:shield-check", isText: true },
 ];
 ---
 
-<section class="py-16 px-4 bg-steel relative overflow-hidden">
-	<!-- Decorative elements -->
-	<div class="absolute top-0 left-0 w-32 h-32 bg-welding-orange/5 rounded-full blur-3xl"></div>
-	<div class="absolute bottom-0 right-0 w-40 h-40 bg-forge-yellow/5 rounded-full blur-3xl"></div>
+<section class="relative overflow-hidden bg-iron">
+	<!-- Subtle top edge line -->
+	<div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-welding-orange/30 to-transparent"></div>
 
-	<div class="max-w-4xl mx-auto relative z-10">
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+	<div class="max-w-5xl mx-auto px-4 py-10 md:py-12">
+		<div class="flex flex-col md:flex-row items-center justify-center md:divide-x md:divide-ash/20">
 			{stats.map((stat) => (
-				<div class="stat-item">
-					<div class="flex items-center justify-center">
-						<span
-							class="stat-number font-heading text-5xl md:text-6xl font-bold text-welding-orange"
-							data-target={stat.number}
-						>
-							0
-						</span>
-						<span class="font-heading text-4xl md:text-5xl font-bold text-welding-orange">
-							{stat.suffix}
-						</span>
+				<div class="stat-item gsap-hidden flex items-center gap-4 px-8 py-5 md:py-3 w-full md:w-auto md:flex-1 justify-center">
+					<div class="flex-shrink-0 w-11 h-11 flex items-center justify-center rounded-lg bg-welding-orange/10 border border-welding-orange/20">
+						<Icon name={stat.icon} class="w-5 h-5 text-welding-orange" />
 					</div>
-					<p class="text-smoke font-medium mt-2">{stat.label}</p>
+					<div>
+						{stat.isText ? (
+							<p class="font-heading text-2xl md:text-3xl font-bold text-welding-orange leading-none">
+								Garantizado
+							</p>
+						) : (
+							<div class="flex items-baseline">
+								<span
+									class="stat-number font-heading text-3xl md:text-4xl font-bold text-welding-orange leading-none"
+									data-target={stat.number}
+								>
+									0
+								</span>
+								<span class="font-heading text-2xl md:text-3xl font-bold text-welding-orange">
+									{stat.suffix}
+								</span>
+							</div>
+						)}
+						<p class="text-sm text-ash font-medium mt-0.5">{stat.label}</p>
+					</div>
 				</div>
 			))}
 		</div>
 	</div>
+
+	<!-- Subtle bottom edge line -->
+	<div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-welding-orange/30 to-transparent"></div>
 </section>
 
 <script>
-	function animateCounters() {
-		const counters = document.querySelectorAll('.stat-number');
+	import {
+		gsap, reveal, isReducedMotion,
+		EASE, DURATION, defaultScrollTrigger,
+	} from '../scripts/gsap-init';
 
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					const counter = entry.target as HTMLElement;
-					const target = parseInt(counter.dataset.target || '0');
-					const duration = 2000;
-					const start = performance.now();
+	function initStatsAnimation() {
+		const statItems = document.querySelectorAll('.stat-item');
+		if (!statItems.length) return;
 
-					function updateCounter(currentTime: number) {
-						const elapsed = currentTime - start;
-						const progress = Math.min(elapsed / duration, 1);
+		reveal(statItems);
 
-						// Easing function for smooth animation
-						const easeOut = 1 - Math.pow(1 - progress, 3);
-						const current = Math.floor(easeOut * target);
+		const reduced = isReducedMotion();
 
-						counter.textContent = current.toString();
+		statItems.forEach((item, index) => {
+			const counter = item.querySelector('.stat-number') as HTMLElement;
 
-						if (progress < 1) {
-							requestAnimationFrame(updateCounter);
-						} else {
-							counter.textContent = target.toString();
-						}
-					}
+			// Entrance animation for the stat-item container
+			if (reduced) {
+				gsap.from(item, {
+					opacity: 0,
+					duration: 0.3,
+					delay: index * 0.1,
+					scrollTrigger: {
+						trigger: item,
+						start: 'top 85%',
+						toggleActions: 'play none none none',
+					},
+				});
+			} else {
+				gsap.from(item, {
+					y: 20,
+					opacity: 0,
+					duration: 0.5,
+					ease: EASE.entrance,
+					delay: index * 0.15,
+					scrollTrigger: {
+						trigger: item,
+						start: 'top 85%',
+						toggleActions: 'play none none none',
+					},
+				});
+			}
 
-					requestAnimationFrame(updateCounter);
-					observer.unobserve(counter);
-				}
+			// Number counting animation (only for items with a counter)
+			if (!counter) return;
+
+			const target = parseInt(counter.dataset.target || '0', 10);
+			const obj = { val: 0 };
+			gsap.to(obj, {
+				val: target,
+				duration: DURATION.counter,
+				ease: EASE.counter,
+				delay: index * 0.15,
+				scrollTrigger: {
+					trigger: item,
+					start: 'top 85%',
+					toggleActions: 'play none none none',
+				},
+				onUpdate: () => {
+					counter.textContent = Math.floor(obj.val).toString();
+				},
 			});
-		}, { threshold: 0.5 });
-
-		counters.forEach(counter => observer.observe(counter));
+		});
 	}
 
-	// Run on page load
-	document.addEventListener('DOMContentLoaded', animateCounters);
-	// Also run on Astro page transitions
-	document.addEventListener('astro:page-load', animateCounters);
+	initStatsAnimation();
 </script>
-
-<style>
-	.stat-item {
-		padding: 1.5rem;
-		border-radius: 1rem;
-		background: rgba(28, 28, 28, 0.5);
-		border: 1px solid rgba(249, 115, 22, 0.1);
-		transition: all 0.3s ease;
-	}
-
-	.stat-item:hover {
-		border-color: rgba(249, 115, 22, 0.3);
-		background: rgba(28, 28, 28, 0.7);
-	}
-</style>

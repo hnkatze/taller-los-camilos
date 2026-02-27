@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 const phone = "99505549";
 const whatsappLink = `https://wa.me/504${phone}`;
 const phoneLink = `tel:+504${phone}`;
@@ -6,118 +8,271 @@ const mapsLink = "https://maps.app.goo.gl/7FSxQtjbjdvgrZr77";
 const mapsEmbed = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.123!2d-85.7247553!3d15.7461602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDQ0JzQ2LjIiTiA4NcKwNDMnMjkuMSJX!5e0!3m2!1ses!2shn!4v1";
 ---
 
-<!-- Section separator -->
-<div class="section-separator bg-steel">
-	<svg class="w-full h-12 md:h-16" viewBox="0 0 1200 100" preserveAspectRatio="none">
-		<path d="M0,0 L1200,0 L1200,40 L600,100 L0,40 Z" fill="#1C1C1C"/>
-	</svg>
-</div>
-
 <section id="contacto" class="py-20 md:py-28 px-4 bg-charcoal">
-	<div class="max-w-6xl mx-auto">
-		<div class="text-center mb-12 animate-on-scroll">
-			<h2 class="font-heading text-3xl md:text-4xl font-bold text-smoke mb-4">
-				<span class="text-welding-orange">CONTÁCTENOS</span>
+	<div class="max-w-5xl mx-auto">
+		<!-- Heading: centered with forge-yellow accent -->
+		<div class="text-center mb-12 md:mb-16">
+			<p class="gsap-hidden font-heading text-sm md:text-base tracking-widest text-forge-yellow uppercase mb-3">Contáctenos</p>
+			<h2 class="gsap-hidden font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-smoke mb-4">
+				Estamos a su disposición
 			</h2>
-			<div class="w-24 h-1 bg-welding-orange mx-auto rounded-full"></div>
+			<p class="gsap-hidden text-ash max-w-md mx-auto">
+				Escríbanos o llámenos para cotizar su proyecto. Le atendemos con gusto.
+			</p>
 		</div>
 
-		<div class="grid md:grid-cols-2 gap-8 lg:gap-12">
-			<!-- Contact Info -->
-			<div class="space-y-6 animate-on-scroll delay-1">
-				<div class="bg-steel p-6 rounded-xl">
-					<h3 class="font-heading text-xl font-semibold text-smoke mb-6">Información de Contacto</h3>
-
+		<div class="grid md:grid-cols-5 gap-8 lg:gap-10">
+			<!-- Contact card: spans 2 columns on md+ -->
+			<div class="md:col-span-2 gsap-hidden">
+				<div class="bg-steel rounded-2xl p-6 md:p-8 h-full flex flex-col">
 					<!-- Phone -->
-					<a href={phoneLink} class="flex items-center gap-4 mb-6 group">
-						<div class="w-12 h-12 bg-charcoal rounded-lg flex items-center justify-center group-hover:bg-welding-orange/10 transition-colors">
-							<svg class="w-6 h-6 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-							</svg>
+					<a href={phoneLink} class="flex items-center gap-4 group mb-6">
+						<div class="w-11 h-11 shrink-0 bg-charcoal rounded-lg flex items-center justify-center group-hover:bg-welding-orange/10 transition-colors">
+							<Icon name="lucide:phone" class="w-5 h-5 text-welding-orange" />
 						</div>
 						<div>
-							<p class="text-ash text-sm">Teléfono</p>
+							<p class="text-ash text-xs uppercase tracking-wide">Teléfono</p>
 							<p class="text-smoke text-lg font-medium group-hover:text-welding-orange transition-colors">{phone}</p>
 						</div>
 					</a>
 
 					<!-- Location -->
 					<div class="flex items-center gap-4 mb-6">
-						<div class="w-12 h-12 bg-charcoal rounded-lg flex items-center justify-center">
-							<svg class="w-6 h-6 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-							</svg>
+						<div class="w-11 h-11 shrink-0 bg-charcoal rounded-lg flex items-center justify-center">
+							<Icon name="lucide:map-pin" class="w-5 h-5 text-welding-orange" />
 						</div>
 						<div>
-							<p class="text-ash text-sm">Ubicación</p>
+							<p class="text-ash text-xs uppercase tracking-wide">Ubicación</p>
 							<p class="text-smoke font-medium">Bonito Oriental, Colón</p>
 							<p class="text-ash text-sm">Honduras</p>
 						</div>
 					</div>
 
-					<!-- WhatsApp Button -->
+					<!-- Hours -->
+					<div class="flex items-start gap-4 mb-8">
+						<div class="w-11 h-11 shrink-0 bg-charcoal rounded-lg flex items-center justify-center mt-0.5">
+							<Icon name="lucide:clock" class="w-5 h-5 text-welding-orange" />
+						</div>
+						<div class="flex-1">
+							<p class="text-ash text-xs uppercase tracking-wide mb-2">Horario</p>
+							<div class="space-y-1.5 text-sm">
+								<div class="flex justify-between">
+									<span class="text-ash">Lun – Vie</span>
+									<span class="text-smoke font-medium">7:00 - 12:00, 1:00 - 4:00 PM</span>
+								</div>
+								<div class="flex justify-between">
+									<span class="text-ash">Sábado</span>
+									<span class="text-smoke font-medium">7:00 AM – 12:00 PM</span>
+								</div>
+								<div class="flex justify-between">
+									<span class="text-ash">Domingo</span>
+									<span class="text-ash/60">Cerrado</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Divider -->
+					<div class="border-t border-charcoal mb-6"></div>
+
+					<!-- WhatsApp CTA (full width, prominent) -->
 					<a
 						href={whatsappLink}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-heading font-bold py-4 px-6 rounded-lg transition-colors"
+						class="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-heading font-bold py-4 px-6 rounded-xl transition-colors mt-auto"
 					>
-						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-						</svg>
-						Escríbenos por WhatsApp
+						<Icon name="lucide:message-circle" class="w-6 h-6" />
+						Escríbanos por WhatsApp
 					</a>
-				</div>
-
-				<!-- Hours -->
-				<div class="bg-steel p-6 rounded-xl">
-					<h3 class="font-heading text-lg font-semibold text-smoke mb-3">Horario de Atención</h3>
-					<div class="space-y-2">
-						<div class="flex justify-between">
-							<span class="text-ash">Lunes a Viernes</span>
-							<span class="text-smoke font-medium">7:00 AM - 4:00 PM</span>
-						</div>
-						<div class="flex justify-between">
-							<span class="text-ash">Sábado</span>
-							<span class="text-smoke font-medium">7:00 AM - 12:00 PM</span>
-						</div>
-						<div class="flex justify-between">
-							<span class="text-ash">Domingo</span>
-							<span class="text-ash/60">Cerrado</span>
-						</div>
-					</div>
 				</div>
 			</div>
 
-			<!-- Google Map -->
-			<div class="animate-on-scroll delay-2 flex flex-col gap-4">
-				<div class="bg-steel rounded-xl overflow-hidden min-h-[350px]">
-					<iframe
-						src={mapsEmbed}
-						width="100%"
-						height="350"
-						style="border:0;"
-						allowfullscreen=""
-						loading="lazy"
-						referrerpolicy="no-referrer-when-downgrade"
-						title="Ubicación de Taller Los Camilos"
-						class="w-full h-full"
-					></iframe>
+			<!-- Map: spans 3 columns on md+ -->
+			<div class="md:col-span-3 gsap-hidden flex flex-col gap-4">
+				<div
+					id="map-container"
+					class="bg-steel rounded-2xl overflow-hidden min-h-[350px] md:min-h-[420px] relative flex-1"
+				>
+					<!-- Static placeholder (shown before map loads) -->
+					<div
+						id="map-placeholder"
+						class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-steel p-6 text-center cursor-pointer group"
+						role="button"
+						tabindex="0"
+						aria-label="Cargar mapa interactivo de Google Maps"
+					>
+						<div class="w-16 h-16 rounded-full bg-charcoal flex items-center justify-center group-hover:bg-welding-orange/10 transition-colors">
+							<Icon name="lucide:map" class="w-8 h-8 text-welding-orange" />
+						</div>
+						<div>
+							<p class="text-smoke font-heading font-semibold text-lg mb-1">Bonito Oriental, Colón</p>
+							<p class="text-ash text-sm">Honduras</p>
+						</div>
+						<span class="inline-flex items-center gap-2 text-welding-orange font-medium text-sm group-hover:underline">
+							<Icon name="lucide:mouse-pointer-click" class="w-4 h-4" />
+							Ver mapa interactivo
+						</span>
+					</div>
+
+					<!-- Iframe inserted here on click -->
 				</div>
+
+				<!-- Open in Google Maps button -->
 				<a
 					href={mapsLink}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center gap-2 bg-steel hover:bg-charcoal text-smoke font-medium py-3 px-6 rounded-lg transition-colors border border-transparent hover:border-welding-orange"
+					class="flex items-center justify-center gap-2 bg-steel hover:bg-welding-orange/10 text-smoke font-medium py-3 px-6 rounded-xl transition-colors border border-ash/20 hover:border-welding-orange"
 				>
-					<svg class="w-5 h-5 text-welding-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-					</svg>
+					<Icon name="lucide:external-link" class="w-4 h-4 text-welding-orange" />
 					Abrir en Google Maps
 				</a>
 			</div>
 		</div>
 	</div>
 </section>
+
+<script define:vars={{ mapsEmbed }}>
+	// Lazy-load the Google Maps iframe only when user clicks the placeholder
+	function initLazyMap() {
+		const placeholder = document.getElementById('map-placeholder');
+		const container = document.getElementById('map-container');
+		if (!placeholder || !container) return;
+
+		function loadMap() {
+			const iframe = document.createElement('iframe');
+			iframe.src = mapsEmbed;
+			iframe.width = '100%';
+			iframe.height = '100%';
+			iframe.style.border = '0';
+			iframe.style.position = 'absolute';
+			iframe.style.inset = '0';
+			iframe.allowFullscreen = true;
+			iframe.loading = 'lazy';
+			iframe.referrerPolicy = 'no-referrer-when-downgrade';
+			iframe.title = 'Ubicación de Taller Los Camilos';
+			iframe.className = 'w-full h-full';
+
+			placeholder.remove();
+			container.appendChild(iframe);
+		}
+
+		placeholder.addEventListener('click', loadMap);
+		placeholder.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				loadMap();
+			}
+		});
+	}
+
+	initLazyMap();
+</script>
+
+<script>
+	import {
+		gsap, reveal, isReducedMotion, EASE, DURATION,
+	} from '../scripts/gsap-init';
+
+	function initContactAnimation() {
+		// -- Heading animations --
+		const subtitle = document.querySelector('#contacto .text-center p:first-child');
+		const heading = document.querySelector('#contacto .text-center h2');
+		const desc = document.querySelector('#contacto .text-center p:last-child');
+		const headingEls = [subtitle, heading, desc].filter(Boolean) as Element[];
+
+		headingEls.forEach(el => reveal(el));
+
+		if (isReducedMotion()) {
+			gsap.from(headingEls, {
+				opacity: 0,
+				duration: 0.3,
+				stagger: 0.1,
+				scrollTrigger: {
+					trigger: '#contacto .text-center',
+					start: 'top 85%',
+					toggleActions: 'play none none none',
+				},
+			});
+		} else {
+			gsap.from(headingEls, {
+				y: 20,
+				opacity: 0,
+				duration: DURATION.default,
+				ease: EASE.entrance,
+				stagger: 0.12,
+				scrollTrigger: {
+					trigger: '#contacto .text-center',
+					start: 'top 85%',
+					toggleActions: 'play none none none',
+				},
+			});
+		}
+
+		// -- Card + Map columns --
+		const grid = document.querySelector('#contacto .grid');
+		if (!grid) return;
+
+		const leftColumn = grid.querySelector(':scope > div:first-child');
+		const rightColumn = grid.querySelector(':scope > div:last-child');
+		if (!leftColumn || !rightColumn) return;
+
+		reveal([leftColumn, rightColumn]);
+
+		if (isReducedMotion()) {
+			gsap.from([leftColumn, rightColumn], {
+				opacity: 0,
+				duration: 0.3,
+				stagger: 0.1,
+				scrollTrigger: {
+					trigger: grid,
+					start: 'top 80%',
+					toggleActions: 'play none none none',
+				},
+			});
+			return;
+		}
+
+		const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+		if (isMobile) {
+			gsap.from([leftColumn, rightColumn], {
+				y: 30,
+				opacity: 0,
+				duration: DURATION.default,
+				stagger: 0.2,
+				ease: EASE.entrance,
+				scrollTrigger: {
+					trigger: grid,
+					start: 'top 80%',
+					toggleActions: 'play none none none',
+				},
+			});
+		} else {
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: grid,
+					start: 'top 80%',
+					toggleActions: 'play none none none',
+				},
+			});
+
+			tl.from(leftColumn, {
+				x: -50,
+				opacity: 0,
+				duration: DURATION.default,
+				ease: EASE.entrance,
+			});
+
+			tl.from(rightColumn, {
+				x: 50,
+				opacity: 0,
+				duration: DURATION.default,
+				ease: EASE.entrance,
+			}, '-=0.5');
+		}
+	}
+
+	initContactAnimation();
+</script>

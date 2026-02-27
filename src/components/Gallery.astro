@@ -1,90 +1,367 @@
 ---
-// Imágenes reales del taller
+import { Icon } from 'astro-icon/components';
+
+const phone = "99505549";
+const whatsappLink = `https://wa.me/504${phone}`;
+
 const images = [
 	{
 		src: "https://i.postimg.cc/Nj7pQQ5t/Imagen-de-i-OS.jpg",
-		alt: "Trabajo de soldadura - Taller Los Camilos",
-		label: "Trabajo Realizado"
+		alt: "Paila ganadera de 500 galones fabricada en acero - Taller Los Camilos",
+		label: "Paila ganadera 500 galones",
+		featured: true,
 	},
 	{
 		src: "https://i.postimg.cc/T3qCTTpT/Imagen-de-i-OS-(1).jpg",
-		alt: "Proyecto de soldadura - Taller Los Camilos",
-		label: "Proyecto Completado"
+		alt: "Techado metálico residencial con estructura de acero - Taller Los Camilos",
+		label: "Techado metálico residencial",
+		featured: false,
 	},
 	{
 		src: "https://i.postimg.cc/2SF2CCVp/Imagen-de-i-OS-(2).jpg",
-		alt: "Soldadura profesional - Taller Los Camilos",
-		label: "Soldadura Profesional"
+		alt: "Estructura metálica para corral ganadero - Taller Los Camilos",
+		label: "Estructura para corral ganadero",
+		featured: false,
 	},
 	{
 		src: "https://i.postimg.cc/nct0Qs81/1.jpg",
-		alt: "Trabajo de soldadura - Taller Los Camilos",
-		label: "Soldadura de Calidad"
+		alt: "Reparación de maquinaria agrícola con soldadura de arco - Taller Los Camilos",
+		label: "Reparación de maquinaria agrícola",
+		featured: true,
 	},
 	{
 		src: "https://i.postimg.cc/CLHJCFYN/2.jpg",
-		alt: "Proyecto metalúrgico - Taller Los Camilos",
-		label: "Proyecto Metalúrgico"
+		alt: "Portón de hierro forjado para finca - Taller Los Camilos",
+		label: "Portón de hierro para finca",
+		featured: false,
 	},
 	{
 		src: "https://i.postimg.cc/4NbwvJZQ/3.jpg",
-		alt: "Fabricación en metal - Taller Los Camilos",
-		label: "Fabricación en Metal"
+		alt: "Tanque de agua en acero galvanizado - Taller Los Camilos",
+		label: "Tanque de agua galvanizado",
+		featured: false,
 	},
 	{
 		src: "https://i.postimg.cc/wTcF56H5/4.jpg",
-		alt: "Trabajo especializado - Taller Los Camilos",
-		label: "Trabajo Especializado"
+		alt: "Báscula ganadera fabricada a medida - Taller Los Camilos",
+		label: "Báscula ganadera a medida",
+		featured: false,
 	},
 	{
 		src: "https://i.postimg.cc/X7cxKV3x/5.jpg",
-		alt: "Reparación profesional - Taller Los Camilos",
-		label: "Reparación Profesional"
+		alt: "Soldadura de arco en estructura metálica pesada - Taller Los Camilos",
+		label: "Soldadura en estructura pesada",
+		featured: true,
 	}
 ];
-// Ya no necesitamos placeholders con 8 imágenes reales
 ---
-
-<!-- Section separator -->
-<div class="section-separator bg-charcoal">
-	<svg class="w-full h-12 md:h-16" viewBox="0 0 1200 100" preserveAspectRatio="none">
-		<path d="M0,40 L600,100 L1200,40 L1200,100 L0,100 Z" fill="#2D2D2D"/>
-	</svg>
-</div>
 
 <section id="galeria" class="py-20 md:py-28 px-4 bg-steel">
 	<div class="max-w-6xl mx-auto">
-		<div class="text-center mb-12 animate-on-scroll">
-			<h2 class="font-heading text-3xl md:text-4xl font-bold text-smoke mb-4">
-				NUESTRO <span class="text-welding-orange">TRABAJO</span>
+		<!-- Heading: left-aligned with vertical accent bar -->
+		<div class="mb-12 md:mb-16">
+			<div class="gsap-hidden flex items-center gap-4 mb-3">
+				<div class="w-1.5 h-10 bg-welding-orange rounded-full"></div>
+				<p class="font-heading text-sm md:text-base tracking-widest text-welding-orange uppercase">Galería</p>
+			</div>
+			<h2 class="gsap-hidden font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-smoke">
+				Proyectos que hablan<br class="hidden sm:block" /> por sí mismos
 			</h2>
-			<div class="w-24 h-1 bg-welding-orange mx-auto rounded-full mb-4"></div>
-			<p class="text-ash">Galería de proyectos realizados</p>
 		</div>
 
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-			{images.map((image, index) => (
-				<div class={`animate-on-scroll delay-${(index % 3) + 1} aspect-[4/3] bg-charcoal rounded-xl border border-charcoal hover:border-welding-orange transition-all duration-300 overflow-hidden group cursor-pointer hover:scale-[1.02]`}>
-					<div class="relative w-full h-full">
+		<!-- Bento grid -->
+		<div class="gallery-grid grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4" role="list">
+			{images.map((image, index) => {
+				const isFeatured = image.featured;
+				const spanClasses = isFeatured
+					? "col-span-2 row-span-2"
+					: "col-span-1 row-span-1";
+
+				return (
+					<button
+						type="button"
+						class:list={[
+							"gallery-item gsap-hidden group relative overflow-hidden rounded-xl bg-charcoal cursor-pointer focus-visible:ring-2 focus-visible:ring-welding-orange focus-visible:ring-offset-2 focus-visible:ring-offset-steel border-0 p-0",
+							spanClasses,
+							isFeatured ? "aspect-square" : "aspect-[4/3]",
+						]}
+						data-gallery-src={image.src}
+						data-gallery-alt={image.alt}
+						data-gallery-label={image.label}
+						aria-label={`Ver imagen: ${image.label}`}
+						role="listitem"
+					>
 						<img
 							src={image.src}
 							alt={image.alt}
 							class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 							loading="lazy"
 						/>
-						<div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-							<div class="absolute bottom-0 left-0 right-0 p-4">
-								<span class="text-smoke font-medium text-sm">{image.label}</span>
+						<!-- Overlay on hover -->
+						<div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+							<div class="p-3 md:p-4 w-full">
+								<p class="text-smoke text-sm md:text-base font-medium leading-tight">{image.label}</p>
 							</div>
 						</div>
-					</div>
-				</div>
-			))}
-
+						<!-- Always-visible label on mobile -->
+						<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/80 to-transparent p-3 md:hidden">
+							<p class="text-smoke text-xs font-medium">{image.label}</p>
+						</div>
+					</button>
+				);
+			})}
 		</div>
 
-		<p class="text-center text-ash mt-8 text-sm animate-on-scroll">
-			Contáctenos para ver más ejemplos de nuestro trabajo
-		</p>
+		<!-- CTA -->
+		<div class="gsap-hidden mt-10 md:mt-14 text-center">
+			<a
+				href={whatsappLink}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-3 bg-welding-orange hover:bg-welding-orange/90 text-charcoal font-heading font-bold text-lg py-4 px-8 rounded-lg transition-colors"
+			>
+				<Icon name="lucide:message-circle" class="w-5 h-5" />
+				<span>¿Quiere un proyecto similar? Contáctenos</span>
+			</a>
+		</div>
 	</div>
 </section>
+
+<!-- Lightbox overlay -->
+<div
+	id="gallery-lightbox"
+	class="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/95 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+	role="dialog"
+	aria-modal="true"
+	aria-label="Visor de imagen"
+>
+	<button
+		id="lightbox-close"
+		type="button"
+		class="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-steel/80 hover:bg-welding-orange text-smoke hover:text-charcoal transition-colors focus-visible:ring-2 focus-visible:ring-welding-orange"
+		aria-label="Cerrar visor de imagen"
+	>
+		<Icon name="lucide:x" class="w-6 h-6" />
+	</button>
+
+	<div class="max-w-5xl max-h-[85vh] w-full mx-4 flex flex-col items-center">
+		<img
+			id="lightbox-img"
+			src=""
+			alt=""
+			class="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
+		/>
+		<p id="lightbox-label" class="mt-4 text-smoke font-heading text-lg text-center"></p>
+	</div>
+</div>
+
+<script>
+import {
+	gsap,
+	ScrollTrigger,
+	reveal,
+	isReducedMotion,
+	EASE,
+	DURATION,
+	animateSectionTitle,
+} from '../scripts/gsap-init';
+
+function initGalleryAnimations() {
+	// -- Heading animation (left-aligned accent bar + heading) --
+	const accentBar = document.querySelector('#galeria .flex.items-center');
+	const heading = document.querySelector('#galeria h2');
+
+	if (accentBar) {
+		reveal(accentBar);
+		if (isReducedMotion()) {
+			gsap.from(accentBar, {
+				opacity: 0,
+				duration: 0.3,
+				scrollTrigger: { trigger: accentBar, start: 'top 85%', toggleActions: 'play none none none' },
+			});
+		} else {
+			gsap.from(accentBar, {
+				x: -30,
+				opacity: 0,
+				duration: DURATION.default,
+				ease: EASE.entrance,
+				scrollTrigger: { trigger: accentBar, start: 'top 85%', toggleActions: 'play none none none' },
+			});
+		}
+	}
+
+	if (heading) {
+		reveal(heading);
+		if (isReducedMotion()) {
+			gsap.from(heading, {
+				opacity: 0,
+				duration: 0.3,
+				scrollTrigger: { trigger: heading, start: 'top 85%', toggleActions: 'play none none none' },
+			});
+		} else {
+			gsap.from(heading, {
+				y: 20,
+				opacity: 0,
+				duration: DURATION.default,
+				ease: EASE.entrance,
+				delay: 0.15,
+				scrollTrigger: { trigger: heading, start: 'top 85%', toggleActions: 'play none none none' },
+			});
+		}
+	}
+
+	// -- Gallery grid items reveal --
+	const gridItems = document.querySelectorAll('#galeria .gallery-item');
+	const ctaBlock = document.querySelector('#galeria .mt-10, #galeria .mt-14');
+
+	if (!gridItems.length) return;
+
+	reveal(gridItems);
+	if (ctaBlock) reveal(ctaBlock);
+
+	if (isReducedMotion()) {
+		gsap.from(gridItems, {
+			opacity: 0,
+			duration: 0.3,
+			stagger: 0.05,
+			scrollTrigger: {
+				trigger: '#galeria .gallery-grid',
+				start: 'top 80%',
+				toggleActions: 'play none none none',
+			},
+		});
+
+		if (ctaBlock) {
+			gsap.from(ctaBlock, {
+				opacity: 0,
+				duration: 0.3,
+				scrollTrigger: {
+					trigger: ctaBlock,
+					start: 'top 85%',
+					toggleActions: 'play none none none',
+				},
+			});
+		}
+		return;
+	}
+
+	const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+	if (isMobile) {
+		gsap.from(gridItems, {
+			opacity: 0,
+			y: 30,
+			duration: 0.6,
+			ease: EASE.entrance,
+			stagger: {
+				amount: 0.4,
+				from: 'start',
+			},
+			scrollTrigger: {
+				trigger: '#galeria .gallery-grid',
+				start: 'top 80%',
+				toggleActions: 'play none none none',
+			},
+		});
+	} else {
+		gsap.from(gridItems, {
+			clipPath: 'inset(0 100% 0 0)',
+			opacity: 0,
+			duration: DURATION.default,
+			ease: EASE.entrance,
+			stagger: {
+				amount: 0.8,
+				grid: 'auto',
+				from: 'start',
+			},
+			scrollTrigger: {
+				trigger: '#galeria .gallery-grid',
+				start: 'top 80%',
+				toggleActions: 'play none none none',
+			},
+		});
+
+		// Parallax depth on images
+		gsap.to('#galeria .gallery-item img', {
+			yPercent: -10,
+			ease: 'none',
+			scrollTrigger: {
+				trigger: '#galeria .gallery-grid',
+				start: 'top bottom',
+				end: 'bottom top',
+				scrub: 0.5,
+			},
+		});
+	}
+
+	// CTA fade up
+	if (ctaBlock) {
+		gsap.from(ctaBlock, {
+			opacity: 0,
+			y: 20,
+			duration: 0.6,
+			ease: EASE.entrance,
+			scrollTrigger: {
+				trigger: ctaBlock,
+				start: 'top 85%',
+				toggleActions: 'play none none none',
+			},
+		});
+	}
+}
+
+// -- Lightbox logic --
+function initLightbox() {
+	const lightbox = document.getElementById('gallery-lightbox');
+	const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+	const lightboxLabel = document.getElementById('lightbox-label');
+	const closeBtn = document.getElementById('lightbox-close');
+	const triggers = document.querySelectorAll<HTMLElement>('[data-gallery-src]');
+
+	if (!lightbox || !lightboxImg || !lightboxLabel || !closeBtn || !triggers.length) return;
+
+	let previouslyFocused: HTMLElement | null = null;
+
+	function openLightbox(src: string, alt: string, label: string) {
+		previouslyFocused = document.activeElement as HTMLElement;
+		lightboxImg!.src = src;
+		lightboxImg!.alt = alt;
+		lightboxLabel!.textContent = label;
+		lightbox!.classList.remove('opacity-0', 'pointer-events-none');
+		lightbox!.classList.add('opacity-100', 'pointer-events-auto');
+		document.body.style.overflow = 'hidden';
+		closeBtn!.focus();
+	}
+
+	function closeLightbox() {
+		lightbox!.classList.add('opacity-0', 'pointer-events-none');
+		lightbox!.classList.remove('opacity-100', 'pointer-events-auto');
+		document.body.style.overflow = '';
+		if (previouslyFocused) previouslyFocused.focus();
+	}
+
+	triggers.forEach((trigger) => {
+		trigger.addEventListener('click', () => {
+			const src = trigger.dataset.gallerySrc || '';
+			const alt = trigger.dataset.galleryAlt || '';
+			const label = trigger.dataset.galleryLabel || '';
+			openLightbox(src, alt, label);
+		});
+	});
+
+	closeBtn.addEventListener('click', closeLightbox);
+
+	lightbox.addEventListener('click', (e) => {
+		if (e.target === lightbox) closeLightbox();
+	});
+
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && !lightbox.classList.contains('pointer-events-none')) {
+			closeLightbox();
+		}
+	});
+}
+
+initGalleryAnimations();
+initLightbox();
+</script>

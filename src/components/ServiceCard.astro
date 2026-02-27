@@ -1,25 +1,61 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface Props {
 	title: string;
 	description: string;
 	icon: string;
+	whatsappMessage?: string;
 }
 
-const { title, description, icon } = Astro.props;
+const { title, description, icon, whatsappMessage } = Astro.props;
+
+const phone = "99505549";
+const defaultMessage = `Hola, me interesa el servicio de ${title}. ¿Me puede dar más información?`;
+const whatsappLink = `https://wa.me/504${phone}?text=${encodeURIComponent(whatsappMessage || defaultMessage)}`;
 ---
 
-<div class="service-card bg-steel p-6 rounded-xl border border-transparent hover:border-welding-orange transition-all duration-300 group">
-	<div class="w-14 h-14 bg-charcoal rounded-lg flex items-center justify-center mb-4 group-hover:bg-welding-orange/10 transition-colors">
-		<Fragment set:html={icon} />
+<div class="service-card relative bg-steel rounded-xl overflow-hidden border border-white/5 hover:border-welding-orange/30 transition-all duration-300 group">
+	<!-- Top accent bar -->
+	<div class="h-1 bg-gradient-to-r from-welding-orange to-forge-yellow" aria-hidden="true"></div>
+
+	<div class="p-6">
+		<!-- Icon + Title row -->
+		<div class="flex items-center gap-4 mb-3">
+			<div class="shrink-0 w-12 h-12 bg-charcoal rounded-lg flex items-center justify-center group-hover:bg-welding-orange/15 transition-colors">
+				<Icon
+					name={icon}
+					class="w-6 h-6 text-welding-orange"
+					aria-hidden="true"
+				/>
+			</div>
+			<h3 class="font-heading text-xl font-semibold text-smoke group-hover:text-welding-orange transition-colors">
+				{title}
+			</h3>
+		</div>
+
+		<!-- Description -->
+		<p class="text-ash leading-relaxed mb-4 text-sm">
+			{description}
+		</p>
+
+		<!-- CTA -->
+		<a
+			href={whatsappLink}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="inline-flex items-center gap-2 text-sm font-medium text-welding-orange hover:text-forge-yellow transition-colors group/cta"
+			aria-label={`Cotizar ${title} por WhatsApp`}
+		>
+			<Icon name="lucide:message-circle" class="w-4 h-4" aria-hidden="true" />
+			<span>Cotizar por WhatsApp</span>
+			<Icon
+				name="lucide:arrow-right"
+				class="w-4 h-4 transition-transform group-hover/cta:translate-x-1"
+				aria-hidden="true"
+			/>
+		</a>
 	</div>
-
-	<h3 class="font-heading text-xl font-semibold text-smoke mb-2 group-hover:text-welding-orange transition-colors">
-		{title}
-	</h3>
-
-	<p class="text-ash leading-relaxed">
-		{description}
-	</p>
 </div>
 
 <style>
@@ -30,9 +66,8 @@ const { title, description, icon } = Astro.props;
 
 	.service-card:hover {
 		box-shadow:
-			0 10px 25px -5px rgba(249, 115, 22, 0.2),
-			0 0 20px -5px rgba(249, 115, 22, 0.15),
-			inset 0 1px 0 rgba(249, 115, 22, 0.1);
+			0 10px 25px -5px rgba(249, 115, 22, 0.15),
+			0 0 20px -5px rgba(249, 115, 22, 0.1);
 		transform: translateY(-4px);
 	}
 </style>
