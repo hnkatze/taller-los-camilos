@@ -1,0 +1,34 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Tech stack: Astro 5, Tailwind CSS 4, TypeScript (strict)
+  Architecture: Static site with file-based routing, Astro components only
+  Testing: None configured
+  Style: Tailwind utility-first, scoped Astro styles for animations only
+  Components: Header, Hero, Services, Gallery, Stats, WhyChooseUs, Contact, Footer, WhatsAppButton
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected components and pages
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include component hierarchy diagrams when adding new sections
+    - Document architecture decisions with rationale
+  tasks:
+    - Group tasks by phase (infrastructure, implementation, testing)
+    - Use hierarchical numbering (1.1, 1.2, etc.)
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow Astro component patterns (frontmatter + template + scoped style)
+    - Use Tailwind CSS for all styling, CSS only for keyframe animations
+    - Use mobile-first responsive design
+  verify:
+    - Check responsive behavior at 320px, 768px, 1024px, 1440px
+    - Validate accessibility (semantic HTML, alt text, contrast)
+    - Compare implementation against every spec scenario
+  archive:
+    - Warn before merging destructive deltas (large removals)
