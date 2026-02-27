@@ -33,7 +33,7 @@ export function defaultScrollTrigger(trigger: string | Element): ScrollTrigger.V
   return {
     trigger,
     start: 'top 85%',
-    toggleActions: 'play none none none',
+    toggleActions: 'play none none reverse',
   };
 }
 

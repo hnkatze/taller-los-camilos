@@ -74,7 +74,7 @@ const stats = [
 					scrollTrigger: {
 						trigger: item,
 						start: 'top 85%',
-						toggleActions: 'play none none none',
+						toggleActions: 'play none none reverse',
 					},
 				});
 			} else {
@@ -87,7 +87,7 @@ const stats = [
 					scrollTrigger: {
 						trigger: item,
 						start: 'top 85%',
-						toggleActions: 'play none none none',
+						toggleActions: 'play none none reverse',
 					},
 				});
 			}
@@ -105,7 +105,7 @@ const stats = [
 				scrollTrigger: {
 					trigger: item,
 					start: 'top 85%',
-					toggleActions: 'play none none none',
+					toggleActions: 'play none none reverse',
 				},
 				onUpdate: () => {
 					counter.textContent = Math.floor(obj.val).toString();

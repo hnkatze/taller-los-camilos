@@ -97,16 +97,6 @@ const images = [
 							class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 							loading="lazy"
 						/>
-						<!-- Overlay on hover -->
-						<div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-							<div class="p-3 md:p-4 w-full">
-								<p class="text-smoke text-sm md:text-base font-medium leading-tight">{image.label}</p>
-							</div>
-						</div>
-						<!-- Always-visible label on mobile -->
-						<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/80 to-transparent p-3 md:hidden">
-							<p class="text-smoke text-xs font-medium">{image.label}</p>
-						</div>
 					</button>
 				);
 			})}
@@ -227,7 +217,7 @@ function initGalleryAnimations() {
 			scrollTrigger: {
 				trigger: '#galeria .gallery-grid',
 				start: 'top 80%',
-				toggleActions: 'play none none none',
+				toggleActions: 'play none none reverse',
 			},
 		});
 
@@ -238,7 +228,7 @@ function initGalleryAnimations() {
 				scrollTrigger: {
 					trigger: ctaBlock,
 					start: 'top 85%',
-					toggleActions: 'play none none none',
+					toggleActions: 'play none none reverse',
 				},
 			});
 		}
@@ -260,7 +250,7 @@ function initGalleryAnimations() {
 			scrollTrigger: {
 				trigger: '#galeria .gallery-grid',
 				start: 'top 80%',
-				toggleActions: 'play none none none',
+				toggleActions: 'play none none reverse',
 			},
 		});
 	} else {
@@ -277,7 +267,7 @@ function initGalleryAnimations() {
 			scrollTrigger: {
 				trigger: '#galeria .gallery-grid',
 				start: 'top 80%',
-				toggleActions: 'play none none none',
+				toggleActions: 'play none none reverse',
 			},
 		});
 
@@ -304,7 +294,7 @@ function initGalleryAnimations() {
 			scrollTrigger: {
 				trigger: ctaBlock,
 				start: 'top 85%',
-				toggleActions: 'play none none none',
+				toggleActions: 'play none none reverse',
 			},
 		});
 	}
